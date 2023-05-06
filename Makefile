@@ -1,12 +1,11 @@
 SRC 		= 	src/main.c \
 				src/utils.c \
-				src/routine.c \
 				src/mandelbrot.c \
 				src/julia.c \
 
 NAME		= 	fractol
 CC			= 	cc
-CFLAGS 		= 	-Wall -Werror -Wextra -I includes
+CFLAGS 		= 	-lmlx -framework OpenGL -framework AppKit
 RM 			= 	rm -f
 OBJS := $(SRC:.c=.o)
  
