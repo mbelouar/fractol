@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/fractol.h"
 
 void	ft_putstr(char *s)
@@ -28,40 +27,41 @@ void	ft_putstr(char *s)
 	}
 }
 
-int     ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-double ft_atoif(char *str) {
-    double sign;
-    double res;
-    int i;
+double	ft_atoif(char *str)
+{
+	double	sign;
+	double	res;
+	int		i;
 
 	i = 0;
 	res = 0.0;
 	sign = 1.0;
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
-    if (str[i] == '+')
-        i++;
-    else if (str[i] == '-')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
 	{
-        sign = -1.0;
-        i++;
+		sign = -1.0;
+		i++;
 	}
-    while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
-        res *= 10.0;
-        res += (double)(str[i] - '0');
-        i++;
-    }
-    return (res * sign);
+		res *= 10.0;
+		res += (double)(str[i] - '0');
+		i++;
+	}
+	return (res * sign);
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -78,11 +78,27 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-void    ft_menu_display(void)
+void	ft_menu_display(void)
 {
-    ft_putstr("==================== THE MENU ====================\n");
-    ft_putstr("usage : ./fractol [The fractal name]\n");
-    ft_putstr("'Mandelbrot' - Mandelbrot set\n");
-    ft_putstr("'Julia' - Julia set\n");
-    ft_putstr("Please choose one of the available fractals\n");
+	ft_putstr("==================== THE MENU ====================\n");
+	ft_putstr("usage : ./fractol [The fractal name]\n");
+	ft_putstr("'Mandelbrot' - Mandelbrot set\n");
+	ft_putstr("   'Julia'   - Julia set\n\n");
+	ft_putstr("In case you choose julia set, \n");
+	ft_putstr("you can put the value of the c constant\n");
+	ft_putstr("usage : ./fractol Julia ");
+	ft_putstr("[real part of c] [imaginary part of c]\n");
+	ft_putstr("This is some famous julia set coordinates :\n");
+	ft_putstr("Julia set for fc : c = −0.4 + 0.6i\n");
+	ft_putstr("Julia set for fc : c = 0.285 + 0i\n");
+	ft_putstr("Julia set for fc : c = 0.285 + 0.01i\n");
+	ft_putstr("Julia set for fc : c = 0.45 + 0.1428i\n");
+	ft_putstr("Julia set for fc : c = −0.70176 − 0.3842i\n");
+	ft_putstr("Julia set for fc : c = −0.835 − 0.2321i\n");
+	ft_putstr("Julia set for fc : c = −0.7269 + 0.1889i\n");
+	ft_putstr("Julia set for fc : c = −0.8 + 0.156i\n");
+	ft_putstr("Julia set for fc : c = -0.1 + 0.651\n");
+	ft_putstr("Julia set for fc : c = -0.75 + 0.11\n");
+	ft_putstr("Julia set for fc : c = −0.8i\n");
+	ft_putstr("Please choose one of the available fractals\n");
 }
