@@ -1,18 +1,20 @@
-SRC 		= 	src/main.c \
-				src/utils.c \
-				src/mandelbrot.c \
-				src/julia.c \
+SRC 		= 	srcs/main.c \
+				srcs/utils.c \
+				srcs/mandelbrot.c \
+				srcs/julia.c \
+				srcs/utils_2.c \
+				srcs/coloring.c \
 
 NAME		= 	fractol
 CC			= 	cc
-CFLAGS 		= 	-lmlx -framework OpenGL -framework AppKit
+FLAGS 		= 	-lmlx -framework OpenGL -framework AppKit
 RM 			= 	rm -f
 OBJS := $(SRC:.c=.o)
  
 all:		$(NAME)
 
-$(NAME):	$(SRCS) 
-			$(CC) $(CFLAGS)  $(SRCS) -o $(NAME)
+$(NAME):	$(OBJS) 
+			$(CC) $(FLAGS)  $(SRC) -o $(NAME)
 
 clean: 
 			@$(RM) $(OBJS) $(OBJS_BONUS)

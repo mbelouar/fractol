@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 22:26:59 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/05/07 20:41:59 by mbelouar         ###   ########.fr       */
+/*   Created: 2023/05/07 20:29:26 by mbelouar          #+#    #+#             */
+/*   Updated: 2023/05/08 01:16:39 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-/*
-Here's the Mandelbrot's algorithm 
-i define the z_im2 and z_re2 to simplifiy the square value of each one
-the tmp var just because after modification of z_re we need the previous value of z_re
-when we calculate the new value of z_im
-the count var helps to iterate until the max_iter
-mod = sqrt(z_re2 + z_im2) > 2
- if the value of Z ever goes farther away than 2 from the origin, 
- c doesn't belong to the set
-*/
-int calculate_mandelbrot(t_fractal *fract)
+void    julia_init(t_fractal *fract, char **av)
 {
-    double z_re = 0;
-    double z_im = 0;
+    if (av[2] && av[3])
+    {
+        fract->c_re = ft_atoif(av[2]);
+        fract->c_im = ft_atoif(av[3]);
+    }
+    else
+    {
+        fract->c_re = -0.7269;
+        fract->c_im = 0.1889;
+    }
+}
+
+int calculate_julia(t_fractal *fract)
+{
+    double z_re = (fract->mouse_x - WIDTH / 2.0) * fract->scale;
+    double z_im = (fract->mouse_y - HEIGHT / 2.0) * fract->scale;
     double tmp;
     double mod;
     int count;
     
+    z_re = (fract->mouse_x - WIDTH / 2.0) * fract->scale;
+    z_im = (fract->mouse_y - HEIGHT / 2.0) * fract->scale;
     mod = z_re * z_re + z_im * z_im;
     count = 0;
     while (mod < 4 && count < fract->max_iter)
@@ -43,20 +49,12 @@ int calculate_mandelbrot(t_fractal *fract)
     return (count);
 }
 
-/**
- * The first thing to do when we are going to draw the Mandelbrot set in an image
- * is to set the equivalence between pixel coordinates and complex numbers.
- * This means that each pixel in our image has to represent a complex number
- * Then we will color that pixel according to whether it belongs to the Mandelbrot set or not.
- * However, I Just define the four corners and calculate.
- */
-
-void    ft_mandelbrot(t_fractal *fract)
+void    ft_julia(t_fractal *fract)
 {
     fract->scale = fract->zoom / WIDTH;
     fract->max_iter = 50;
-    fract->z_re = 0;
-    fract->z_im = 0;
+    // fract->c_re = -0.7269;
+    // fract->c_im = 0.1889;
     fract->mouse_y = -1;
 
     while (++fract->mouse_y < HEIGHT)
@@ -64,9 +62,7 @@ void    ft_mandelbrot(t_fractal *fract)
         fract->mouse_x = -1;
         while (++fract->mouse_x < WIDTH)
         {
-            fract->c_re = (fract->mouse_x - WIDTH / 2.0) * fract->scale;
-	        fract->c_im = (fract->mouse_y - HEIGHT / 2.0) * fract->scale;
-            fract->iter = calculate_mandelbrot(fract);
+            fract->iter = calculate_julia(fract);
             if (fract->iter == fract->max_iter)  // inside the mandelbrot set
                 plot_point(fract, fract->mouse_x, fract->mouse_y, 0x000000);
             else  // outside mandelbrot set

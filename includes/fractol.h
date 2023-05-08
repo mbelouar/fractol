@@ -17,7 +17,6 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # define WIDTH		1200
 # define HEIGHT		1000
@@ -62,6 +61,7 @@ typedef struct	s_fractal {
     double      z_re;
     double      z_im;
 	double 		scale;
+	double		zoom;
 	double		mouse_x;
 	double		mouse_y;
     int         iter;
@@ -69,18 +69,24 @@ typedef struct	s_fractal {
     rgb_colors  color;
 }				t_fractal;
 
-
 void    ft_menu_display(void);
 void    ft_print_usage(void);
 void	ft_putstr(char *s);
 void	ft_init_fractal(t_fractal *fract);
 void	ft_init_image(t_fractal *fract);
-void    set_complex_pixel_and_draw(t_fractal *fract);
 void 	plot_point(t_fractal *fract, int x, int y, int color);
 int		ft_check_choice(char *name, t_fractal *fract);
 int     ft_strlen(char *str);
 int		ft_strcmp(char *s1, char *s2);
-int     ft_algo_of_each_fract(t_fractal *fract);
+int 	get_color(t_fractal *fract, int iter);
+void    ft_mandelbrot(t_fractal *fract);
 int 	calculate_mandelbrot(t_fractal *fract);
+void    ft_julia(t_fractal *fract);
+int 	calculate_julia(t_fractal *fract);
+int		ft_zoom(int mouse, int x, int y, t_fractal *fract);
+int		esc_handle(int keycode, t_fractal *fract);
+int		ft_close(t_fractal *fract);
+void    julia_init(t_fractal *fract, char **av);
+double	ft_atoif(char *str);
 
 #endif

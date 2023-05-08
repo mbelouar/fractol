@@ -38,6 +38,32 @@ int     ft_strlen(char *str)
     return (i);
 }
 
+double ft_atoif(char *str) {
+    double sign;
+    double res;
+    int i;
+
+	i = 0;
+	res = 0.0;
+	sign = 1.0;
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    if (str[i] == '+')
+        i++;
+    else if (str[i] == '-')
+	{
+        sign = -1.0;
+        i++;
+	}
+    while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	{
+        res *= 10.0;
+        res += (double)(str[i] - '0');
+        i++;
+    }
+    return (res * sign);
+}
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

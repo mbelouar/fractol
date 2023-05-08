@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:33:00 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/05/06 00:48:17 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/05/08 01:12:48 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,23 @@ int main(int ac, char **av)
 		exit(1);
 	}
 	ft_init_fractal(&fract);
-	set_complex_pixel_and_draw(&fract);
+	if (fract.fractal == MANDELBROT)
+		ft_mandelbrot(&fract);
+	else if (fract.fractal == JULIA)
+	{
+		julia_init(&fract, av);
+		ft_julia(&fract);
+	}
+	mlx_mouse_hook(fract.win_ptr, ft_zoom, &fract);
+	mlx_key_hook(fract.win_ptr, &esc_handle, &fract);
+	mlx_hook(fract.win_ptr, 17, 0, ft_close, &fract);
 	mlx_loop(fract.mlx_ptr);
 }
-
 
 void	ft_init_fractal(t_fractal *fract)
 {
 	fract->mlx_ptr = mlx_init();
+	fract->zoom = 4.0;
 	if (!(fract->mlx_ptr))
 		ft_putstr("Mlx initialization failed\n");
 	fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, TITLE);
