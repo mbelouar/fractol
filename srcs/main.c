@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:33:00 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/05/08 22:25:36 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/05/10 06:05:54 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	ft_check_choice(int ac, char **av, t_fractal *fract)
 		fract->fractal = JULIA;
 		if (av[2] && av[3])
 		{
-			fract->c_re = atof(av[2]);
-			fract->c_im = atof(av[3]);
+			fract->c_re = ft_atoif(av[2]);
+			fract->c_im = ft_atoif(av[3]);
 		}
 		else if (ac == 2)
 		{

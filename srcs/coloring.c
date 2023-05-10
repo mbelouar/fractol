@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 20:41:39 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/05/08 21:27:27 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/05/10 07:08:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
  * in the window using the WIDTH and HEIGHT of the window, and then sets the
  * color of the pixel to the specified value.
  */
-
 void	plot_point(t_fractal *fract, int x, int y, int color)
 {
 	char	*addr;
@@ -31,14 +30,13 @@ void	plot_point(t_fractal *fract, int x, int y, int color)
 
 /**
  * This function takes in a fractal struct and the number of iterations
- * it took for a point to escape the Mandelbrot set. It then uses the 
+ * it took for a point to escape the Mandelbrot set. It then uses the
  * number of iterations to calculate a color to represent the point.
  * The color calculation is based on the number of iterations and the
  * escape time algorithm. The resulting color is then returned.
  * the value of escp between 0 and 1 based on the number of iterations
  * it represents the portion of the way the point has "escaped"
  */
-
 int	get_color(t_fractal *fract, int iter)
 {
 	int		color;

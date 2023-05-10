@@ -67,23 +67,39 @@ typedef struct s_fractal {
 	int				max_iter;
 }				t_fractal;
 
+/* All the other functions that helps me in the main function */
 void	ft_menu_display(void);
-void	ft_print_usage(void);
 void	ft_putstr(char *s);
 void	ft_init_fractal(t_fractal *fract);
 void	ft_init_image(t_fractal *fract);
-void	plot_point(t_fractal *fract, int x, int y, int color);
-void	ft_mandelbrot(t_fractal *fract);
-void	ft_julia(t_fractal *fract);
 int		ft_check_choice(int ac, char **av, t_fractal *fract);
 int		ft_strlen(char *str);
 int		ft_strcmp(char *s1, char *s2);
+
+/* The coloring functions:
+plot_point to set the color in the pixel
+get color to calculate a specified color
+ */
+void	plot_point(t_fractal *fract, int x, int y, int color);
 int		get_color(t_fractal *fract, int iter);
+
+/* The mandelbrot set */
+void	ft_mandelbrot(t_fractal *fract);
 int		calculate_mandelbrot(t_fractal *fract);
+
+/* The julia set */
+void	ft_julia(t_fractal *fract);
 int		calculate_julia(t_fractal *fract);
+
+/* The mouse and windows behaviour  */
 int		ft_zoom(int mouse, int x, int y, t_fractal *fract);
 int		esc_handle(int keycode, t_fractal *fract);
 int		ft_close(t_fractal *fract);
+
+/* The atof function that convert a string to a double */
 double	ft_atoif(char *str);
+double	process_digits(char *str, int *i, int *num_digits);
+void	process_sign(char *str, int *i, double *sign);
+void	adjust_decimal(double *result, int num_digits);
 
 #endif

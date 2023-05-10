@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 22:26:59 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/05/08 22:25:57 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/05/10 07:08:33 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	calculate_mandelbrot(t_fractal *fract)
  * whether it belongs to the Mandelbrot set or not.
  * However, I Just define the four corners and calculate.
  */
-
 void	ft_mandelbrot(t_fractal *fract)
 {
 	fract->scale = fract->zoom / WIDTH;
